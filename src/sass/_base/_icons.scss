@@ -1,0 +1,40 @@
+.reverse{
+	transform: scale(-1, -1);
+}
+.icon-checked{
+	background-image: url('../img/icon_task done.svg');
+	background-repeat: no-repeat;
+	background-position: top center;
+	display:block;
+	width:32px;
+	height:32px;
+	float:left;
+	&:after{
+		clear:both;
+	}
+}
+.icon-orange-dot{
+  @include orange-dot;
+   margin:5px 10px;
+}
+.icon-orange-dot-two{
+	@include orange-dot;
+	box-shadow: 15px 0px 0px $orange;
+   margin:5px 25px 5px 5px;
+}
+.icon-orange-dot-three{
+   @include orange-dot;
+   box-shadow: 15px 0px 0px $orange, 30px 0px 0px $orange;
+   margin:5px 35px 5px 5px;
+}
+.icon-orange-dot-four{
+   @include orange-dot;
+   box-shadow: 15px 0px 0px $orange, 30px 0px 0px $orange, 45px 0px 0px $orange;
+   margin:5px 50px 5px 5px;
+}
+.icon-orange-dot-five{
+   @include orange-dot;
+   box-shadow: 15px 0px 0px $orange, 30px 0px 0px $orange, 45px 0px 0px $orange, 60px 0px 0px $orange;
+   margin:5px 65px 5px 5px;
+}
+

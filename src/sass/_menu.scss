@@ -1,0 +1,138 @@
+//menu
+.menu{
+	height:100%;
+	width:auto;
+	@include flexbox(row,top, flex-start);
+}
+.menubar{	
+	background-color: rgba(255,255,255,0.9);
+	height:100%;
+	width:$panel-size;
+	padding:24px 11px;
+	border-right:1px solid $primary-color;
+	.menuitem{
+		width:32px;
+		height:32px;
+		margin-bottom: 24px;
+		a:hover, a.active{
+			.a{
+			fill:$orange;
+			}
+		};
+	}
+}
+.add-task{
+	margin:4px;
+	@include plusicon(24px,$primary-color);
+	&:hover,.active{
+		&:before,
+		&:after{
+		background-color: $orange;
+	   }
+	};
+}
+.menupanel{
+	background-color: rgba(255,255,255,0.9);
+	height:100%;
+	width:42vw;
+}
+.menupan-content{
+	padding:24px 0 0 0;
+	h2{
+		color:$orange;
+		padding:0 40px;
+	}	
+}
+.task-form{
+	padding:0 40px 20px 40px;
+	.formitem{
+		margin-top:24px;
+	}
+	label{
+		width:100%;
+		color:$primary-color;
+	}
+	input, select, .tomato-count{
+		color:$gray-text;
+		height:36px;
+		margin-top: 10px;
+		border-radius:23px;
+		border:1px solid $sec-color;
+		display:block;
+		font-family: 'Raleway';
+		&:focus{
+			border: 1px solid $primary-color;
+		};
+	}
+	input{
+		padding:0 30px;
+		width:calc(100% - 30px*2);
+	}
+	select{
+		padding:0 30px 0 36px;
+		font-family: 'Raleway';
+		font-size:20px;
+		width:90px;
+		background-color:$sec-color;
+	}
+	.parall-item{
+		@include flexbox(row, center,space-between);
+		label{
+			width:auto;
+			margin-right: 30px;
+		}
+	}
+	.tomato-count{
+		background-color: $sec-color;
+		width:calc(100% - 90px);
+		margin-left:30px;
+	}
+	input.orange-btn{
+		position:absolute;
+		bottom:60px;
+		left:calc(((42vw - 180px)*0.5) + #{$panel-size}) ;
+		width:180px;
+		color:$sec-color;
+		border:1px solid $orange;
+	}
+}
+.pan-content{
+	padding:11px 40px;
+	border-top:1px solid $primary-color;
+	h4{
+		color:$orange;
+	}
+	ul{
+		padding:5px 0 20px 0;
+	}
+	li{
+		width:100%;
+		height:36px;
+		color:$gray-text;
+		background-color: $sec-color;
+		border-radius: 2px;
+		margin-bottom: 2px;
+		padding-top:8px;
+		span{
+			float:right;
+
+			&:after{
+				content:'';
+				clear:both;
+			}
+		}
+	}
+}
+.control-holder{
+	@include flexbox(row, center, space-between);
+	.orange-btn{
+		width:90px;
+		height:32px;
+	}
+	.round-btn{
+		padding:5px;
+		img{
+			padding-left:5px;
+		}
+	}
+}
