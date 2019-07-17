@@ -7,12 +7,12 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="header">
+  <header class="header">
   	<h1>POMODORO</h1>
   	<a class="btn round-btn logout">Log out</a>
   	<div class="user"><img src="img/icon_people.svg"/><h4>Peggy</h4></div>
-  </div>
-  <div class="main">
+  </header>
+  <nav>
   	<div class="menu">
   		<ul class="menubar">
   			<li class="menuitem"><a class="btn add-task"></a></li>
@@ -21,7 +21,7 @@
   			<li class="menuitem"><a class="btn ringtone"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><defs><style>.a{fill:#125b6a;}.b{fill:none;}</style></defs><path class="a" d="M26.5,16a6.725,6.725,0,0,0-3.981-6.045V22.03A6.687,6.687,0,0,0,26.5,16ZM5,11.5v9h6.37L19.333,28V4L11.37,11.5Z"/><path class="b" d="M0,0H32V32H0Z"/></svg></a></li>
   		</ul>
   		<div class="menupanel">
-<!--   			<div class="menupan-content add-task-pan">
+  			<div class="menupan-content add-task-pan">
   				<h2>Add New Task</h2>
   				<form class="task-form"> 
   					<div class="formitem">
@@ -47,8 +47,8 @@
   					</div>
   					<input type="submit" value="ADD" data-wait="Please wait..." class="btn round-btn orange-btn">
   				</form>
-  			</div> -->
-<!--   			<div class="menupan-content task-list-pan">
+  			</div>
+  			<div class="menupan-content task-list-pan">
   				<h2>Task List</h2>
   				<form class="task-form">
   					<div class="formitem parall-item">
@@ -81,7 +81,7 @@
 	  					<a href="" class="btn orange-btn round-btn"><img src="img/icon_next date.svg"/></a>
 	  				</div>
   				</div>
-  			</div> -->
+  			</div>
   			<div class="menupan-content task-analytics-pan">
   				<h2>Analytics</h2>
   				<form class="task-form">
@@ -93,15 +93,71 @@
   				<div class="pan-content">
   					<div class="tabs">
   						<div class="tab-menu">
-  							
+  							<ul>
+  								<li class="active">Tomato</li>
+  								<li>Task</li>
+  							</ul>
   						</div>
-  						<div class="tab-content"></div>
+  						<div class="tab-content">
+  							<div class="total">
+  								<p class="large">4/6<span class="small">Today</span></p>
+  								<p class="large">16/30<span class="small">Week</span></p>
+  							</div>
+  							<canvas></canvas>
+  						</div>
   					</div>
+  					<div class="control-holder">
+	  					<a href="" class="btn orange-btn round-btn"><img class="reverse" src="img/icon_next date.svg"/></a>
+	  					<a href="" class="btn orange-btn round-btn"><img src="img/icon_next date.svg"/></a>
+	  				</div>
   				</div>
-  			</div>	
+  			</div>	 
+  			<div class="menupan-content ring-pan">
+  				<h2>Ring</h2>
+			    <form class="ringtone-form">
+		    		<label class="text">Ringtone 1
+		    			<input type="radio" name="Ringtone" data-name="Ringtone1" checked="checked">
+		    			<span class="orange-radio"></span>
+		    		 </label>
+		    		 <label class="text">Ringtone 2
+		    			<input type="radio" name="Ringtone" data-name="Ringtone2" >
+		    			<span class="orange-radio"></span>
+		    		 </label>
+		    		 <label class="text">Ringtone 3
+		    			<input type="radio" name="Ringtone" data-name="Ringtone4">
+		    			<span class="orange-radio"></span>
+		    		 </label>
+		    		 <label class="text">Ringtone 4
+		    			<input type="radio" name="Ringtone" data-name="Ringtone4" >
+		    			<span class="orange-radio"></span>
+		    		 </label>
+		    		  <label class="text">Ringtone 5
+		    			<input type="radio" name="Ringtone" data-name="Ringtone5" >
+		    			<span class="orange-radio"></span>
+		    		 </label>
+		    		 <label class="text">Ringtone 6
+		    			<input type="radio" name="Ringtone" data-name="Ringtone6">
+		    			<span class="orange-radio"></span>
+		    		 </label>
+		    		 <label class="text">Ringtone 7
+		    			<input type="radio" name="Ringtone" data-name="Ringtone7" >
+		    			<span class="orange-radio"></span>
+		    		 </label>
+			    </form>
+  			</div>
   		</div>
   	</div>
-  </div>
+ </nav> 	
+  	<main>
+  		<div class="main">
+  			<h2><a class="btn add-task-start">Add Your First Task to Start</a></h2>
+  		</div>
+  	</main>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="main-min.js"></script>
 </body>
 
 </html>

@@ -1,10 +1,23 @@
 //menu
+nav{
+	position: absolute;
+	top:$panel-size;
+	left:0;
+	z-index:$nav-index;
+	width:$panel-size;
+	height:calc(100% - #{$panel-size});;
+}
 .menu{
 	height:100%;
 	width:auto;
 	@include flexbox(row,top, flex-start);
+	position: relative;
 }
 .menubar{	
+	position: absolute;
+	top:0;
+	left:0;
+	z-index:$menubar-index;
 	background-color: rgba(255,255,255,0.9);
 	height:100%;
 	width:$panel-size;
@@ -14,17 +27,28 @@
 		width:32px;
 		height:32px;
 		margin-bottom: 24px;
-		a:hover, a.active{
+		a:hover{
 			.a{
 			fill:$orange;
 			}
 		};
 	}
+	.menuitem.active{
+		a{
+			.a{fill:$orange;}
+		}
+		a.add-task{
+			&:before,
+			&:after{
+			background-color: $orange;
+		   }
+		}
+	}
 }
 .add-task{
 	margin:4px;
 	@include plusicon(24px,$primary-color);
-	&:hover,.active{
+	&:hover{
 		&:before,
 		&:after{
 		background-color: $orange;
@@ -32,15 +56,28 @@
 	};
 }
 .menupanel{
+	position: absolute;
+	z-index:104;
+	top:0;
+	left:$panel-size;
 	background-color: rgba(255,255,255,0.9);
 	height:100%;
 	width:42vw;
+	transition: all 1s;
+	transform:translateX(calc(-42vw - #{$panel-size}));
+	&.open{
+		transform:translateX(0);
+	}
 }
 .menupan-content{
+	display:none;
 	padding:24px 0 0 0;
 	h2{
 		color:$orange;
 		padding:0 40px;
+	}
+	&.show{
+		display:block;
 	}	
 }
 .task-form{
@@ -53,7 +90,7 @@
 		color:$primary-color;
 	}
 	input, select, .tomato-count{
-		color:$gray-text;
+		color:$text-gray;
 		height:36px;
 		margin-top: 10px;
 		border-radius:23px;
@@ -90,7 +127,7 @@
 	input.orange-btn{
 		position:absolute;
 		bottom:60px;
-		left:calc(((42vw - 180px)*0.5) + #{$panel-size}) ;
+		left:calc(((42vw - 180px)*0.5)) ;
 		width:180px;
 		color:$sec-color;
 		border:1px solid $orange;
@@ -108,7 +145,7 @@
 	li{
 		width:100%;
 		height:36px;
-		color:$gray-text;
+		color:$text-gray;
 		background-color: $sec-color;
 		border-radius: 2px;
 		margin-bottom: 2px;
@@ -133,6 +170,73 @@
 		padding:5px;
 		img{
 			padding-left:5px;
+		}
+	}
+}
+
+.tab-menu{
+	ul{
+		@include flexbox(row, center, space-between);
+		padding:5px 0;
+		li{
+			width:49%;
+			text-align: center;
+			background-color: $light-gray;
+			&.active{
+				background-color: $orange;
+				color:$sec-color;
+			}
+		}
+	}
+}
+.tab-content{
+	.total{
+		background-color: $sec-color;
+		color:$orange;
+		margin-bottom: 10px;
+		@include flexbox(row, baseline, sapce-between);
+		p{
+			padding:10px;
+			.small{
+				color:$primary-color;
+			}
+		}
+	}
+}
+
+.ringtone-form{
+	padding:20px 40px 20px 40px;
+	label{
+		display:block;
+		position: relative;
+		padding-left:30px;
+		height:36px;
+		width:100%;
+		background-color: rgba(255,255,255,0.6);
+		padding-top: 8px;
+		color:$text-gray;
+		user-select: none;
+		cursor: pointer;
+		margin-bottom: 2px;
+		.orange-radio {
+		  position: absolute;
+		  top: 12px;
+		  left: 5px;
+		  height: 15px;
+		  width: 15px;
+		  background-color: $sec-color;
+		  border-radius: 50%;
+		  border:1px solid $orange;
+		}
+		&:hover input ~ .orange-radio{
+			background-color:$orange;
+		}
+		input:checked ~ .orange-radio{
+			background-color:$orange;
+		}
+		input:checked ~ .orange-radio:after {
+			background-color:$orange;
+		  display: block;
 		}
 	}
 }

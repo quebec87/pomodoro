@@ -95,6 +95,18 @@ h4 {
 	font-size: 18px;
 }
 
+.large {
+	font-size: 48px;
+}
+
+.small {
+	font-size: 16px;
+}
+
+.mini {
+	font-size: 12px;
+}
+
 .reverse {
 	-webkit-transform: scale(-1, -1);
 	        transform: scale(-1, -1);
@@ -220,9 +232,12 @@ body {
 	background: #125B6A;
 	color: #fff;
 	font-family: 'Raleway';
+	position: relative;
 }
 
 .header {
+	position: absolute;
+	z-index: 200;
 	width: 100vw;
 	height: 54px;
 	-webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
@@ -271,7 +286,29 @@ body {
 	background-color: #E46713;
 }
 
+main {
+	position: absolute;
+	top: 54px;
+	left: 54px;
+	z-index: 5;
+	width: calc(100vw - 54px);
+	height: calc(100% - 54px);
+}
+
 .main {
+	position: relative;
+}
+
+.main h2 {
+	margin-top: 50px;
+}
+
+nav {
+	position: absolute;
+	top: 54px;
+	left: 0;
+	z-index: 100;
+	width: 54px;
 	height: calc(100% - 54px);
 }
 
@@ -291,9 +328,14 @@ body {
 	-webkit-box-pack: start;
 	    -ms-flex-pack: start;
 	        justify-content: flex-start;
+	position: relative;
 }
 
 .menubar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 105;
 	background-color: rgba(255, 255, 255, 0.9);
 	height: 100%;
 	width: 54px;
@@ -307,8 +349,16 @@ body {
 	margin-bottom: 24px;
 }
 
-.menubar .menuitem a:hover .a, .menubar .menuitem a.active .a {
+.menubar .menuitem a:hover .a {
 	fill: #E46713;
+}
+
+.menubar .menuitem.active a .a {
+	fill: #E46713;
+}
+
+.menubar .menuitem.active a.add-task:before, .menubar .menuitem.active a.add-task:after {
+	background-color: #E46713;
 }
 
 .add-task {
@@ -343,23 +393,41 @@ body {
 	margin-top: -2px;
 }
 
-.add-task:hover:before, .add-task:hover:after, .add-task .active:before, .add-task .active:after {
+.add-task:hover:before, .add-task:hover:after {
 	background-color: #E46713;
 }
 
 .menupanel {
+	position: absolute;
+	z-index: 104;
+	top: 0;
+	left: 54px;
 	background-color: rgba(255, 255, 255, 0.9);
 	height: 100%;
 	width: 42vw;
+	-webkit-transition: all 1s;
+	transition: all 1s;
+	-webkit-transform: translateX(calc(-42vw - 54px));
+	        transform: translateX(calc(-42vw - 54px));
+}
+
+.menupanel.open {
+	-webkit-transform: translateX(0);
+	        transform: translateX(0);
 }
 
 .menupan-content {
+	display: none;
 	padding: 24px 0 0 0;
 }
 
 .menupan-content h2 {
 	color: #E46713;
 	padding: 0 40px;
+}
+
+.menupan-content.show {
+	display: block;
 }
 
 .task-form {
@@ -432,7 +500,7 @@ body {
 .task-form input.orange-btn {
 	position: absolute;
 	bottom: 60px;
-	left: calc(((42vw - 180px)*0.5) + 54px);
+	left: calc(((42vw - 180px)*0.5));
 	width: 180px;
 	color: #fff;
 	border: 1px solid #E46713;
@@ -497,6 +565,106 @@ body {
 
 .control-holder .round-btn img {
 	padding-left: 5px;
+}
+
+.tab-menu ul {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	padding: 5px 0;
+}
+
+.tab-menu ul li {
+	width: 49%;
+	text-align: center;
+	background-color: #E5E5E5;
+}
+
+.tab-menu ul li.active {
+	background-color: #E46713;
+	color: #fff;
+}
+
+.tab-content .total {
+	background-color: #fff;
+	color: #E46713;
+	margin-bottom: 10px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-align: baseline;
+	    -ms-flex-align: baseline;
+	        align-items: baseline;
+	-webkit-box-pack: sapce-between;
+	    -ms-flex-pack: sapce-between;
+	        justify-content: sapce-between;
+}
+
+.tab-content .total p {
+	padding: 10px;
+}
+
+.tab-content .total p .small {
+	color: #125B6A;
+}
+
+.ringtone-form {
+	padding: 20px 40px 20px 40px;
+}
+
+.ringtone-form label {
+	display: block;
+	position: relative;
+	padding-left: 30px;
+	height: 36px;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.6);
+	padding-top: 8px;
+	color: #4D4D4D;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+	cursor: pointer;
+	margin-bottom: 2px;
+}
+
+.ringtone-form label .orange-radio {
+	position: absolute;
+	top: 12px;
+	left: 5px;
+	height: 15px;
+	width: 15px;
+	background-color: #fff;
+	border-radius: 50%;
+	border: 1px solid #E46713;
+}
+
+.ringtone-form label:hover input ~ .orange-radio {
+	background-color: #E46713;
+}
+
+.ringtone-form label input:checked ~ .orange-radio {
+	background-color: #E46713;
+}
+
+.ringtone-form label input:checked ~ .orange-radio:after {
+	background-color: #E46713;
+	display: block;
 }
 
 /*# sourceMappingURL=style.css.map */

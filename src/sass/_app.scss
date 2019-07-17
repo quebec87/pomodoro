@@ -4,10 +4,12 @@ body {
     background: $primary-color;
     color:$sec-color;
     font-family: 'Raleway';
+    position: relative;
 }
 
 .header{
-	
+	position: absolute;
+	z-index:$header-index;
 	width:100vw;
 	height:$panel-size;
 	box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
@@ -39,6 +41,18 @@ body {
 	}
 }
 
-.main{
+main{
+	position: absolute;
+	top:$panel-size;
+	left:$panel-size;
+	z-index:$clock-index;
+	width:calc(100vw - #{$panel-size});
 	height:calc(100% - #{$panel-size});
+
+}
+.main{
+	position: relative;
+	h2{
+		margin-top:50px;
+	}
 }
