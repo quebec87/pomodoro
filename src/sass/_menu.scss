@@ -3,13 +3,15 @@ nav{
 	position: absolute;
 	top:$panel-size;
 	left:0;
+	//width:calc(42vw + #{$panel-size} );
 	z-index:$nav-index;
-	width:$panel-size;
-	height:calc(100% - #{$panel-size});;
+	height:calc(100% - #{$panel-size});
+	&:after{
+		clear:both;
+	};
 }
 .menu{
 	height:100%;
-	width:auto;
 	@include flexbox(row,top, flex-start);
 	position: relative;
 }
@@ -112,6 +114,12 @@ nav{
 		width:90px;
 		background-color:$sec-color;
 	}
+	.dateinput{
+		background-image: url('../img/icon_date.svg');
+		background-repeat: no-repeat;
+		background-position: calc(100% - 30px);
+
+	}
 	.parall-item{
 		@include flexbox(row, center,space-between);
 		label{
@@ -123,6 +131,7 @@ nav{
 		background-color: $sec-color;
 		width:calc(100% - 90px);
 		margin-left:30px;
+		padding:7px 10px;
 	}
 	input.orange-btn{
 		position:absolute;

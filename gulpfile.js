@@ -40,6 +40,7 @@ gulp.task('compress', () => {
 gulp.task('watch', [], () => {
   gulp.watch(['src/sass/**/*.scss'], ['sass']);
   gulp.watch(['src/*.js'], ['compress']);
+  gulp.watch(['src/*.js']).on('change', browserSync.reload);
   gulp.watch('public/*.html').on('change', browserSync.reload);
 });
 

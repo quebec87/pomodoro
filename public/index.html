@@ -4,6 +4,7 @@
   <title>POMORODO</title>
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -30,7 +31,7 @@
   					</div>
   					<div class="formitem">
   						<label for="Task-Date" class="textplus">Task Date</label>
-  						<input type="text" class="textplus" maxlength="256" name="Task-Date" data-name="Task Date" id="Task-Date" required="">
+  						<input type="text" class="textplus dateinput" maxlength="256" name="Task-Date" data-name="Task Date" id="Task-Date" required="">
   					</div>
   					<div class="formitem">
   						<label for="Estimated-Tomato" class="textplus">Estimated-Tomato</label>
@@ -42,7 +43,7 @@
 	  							<option value="4">4</option>
 	  							<option value="5">5</option>
 	  						</select>
-  							<div class="tomato-count"></div>
+  							<div class="tomato-count"><div class="icon-orange-dot"></div></div>
   						</div>
   					</div>
   					<input type="submit" value="ADD" data-wait="Please wait..." class="btn round-btn orange-btn">
@@ -53,7 +54,7 @@
   				<form class="task-form">
   					<div class="formitem parall-item">
   						<label for="Task-List-Date" class="textplus">Date</label>
-  						<input type="text" class="textplus" maxlength="256" name="Task-List-Date" data-name="Task List Date" id="Task-List-Date" required="">
+  						<input type="text" class="textplus dateinput" maxlength="256" name="Task-List-Date" data-name="Task List Date" id="Task-List-Date" required="">
   					</div>
   				</form>
   				<div class="pan-content">
@@ -86,8 +87,8 @@
   				<h2>Analytics</h2>
   				<form class="task-form">
   					<div class="formitem parall-item">
-  						<label for="Task-List-Date" class="textplus">Date</label>
-  						<input type="text" class="textplus" maxlength="256" name="Task-List-Date" data-name="Task List Date" id="Task-List-Date" required="">
+  						<label for="Analytics-Date" class="textplus">Date</label>
+  						<input type="text" class="textplus dateinput" maxlength="256" name="Analytics-Date" data-name="Analytics-Date" id="Analytics-Date" required="">
   					</div>
   				</form>
   				<div class="pan-content">
@@ -148,15 +149,40 @@
   		</div>
   	</div>
  </nav> 	
-  	<main>
-  		<div class="main">
-  			<h2><a class="btn add-task-start">Add Your First Task to Start</a></h2>
-  		</div>
-  	</main>
+<main>
+	<div class="main">
+		<h2><a class="btn add-task-start">Add Your First Task to Start</a></h2>
+		<div class="timer notask">
+			<div class="clock">
+				<svg class="outer-circle-trans" width="50vh" height="50vh">
+					<circle r="24vh" cx="50%" cy="50%"></circle>
+				</svg>
+				<svg class="outer-circle" width="50vh" height="50vh">
+					<circle r="24vh" cx="50%" cy="50%"></circle>
+				</svg>
+				<svg class="anchor" width="10px" height="10px">
+					<circle r="5" cx="50%" cy="50%"></circle>
+				</svg>
+				<svg class="inner-circle" width="40vh" height="40vh">
+					<circle r="20vh" cx="50%" cy="50%"></circle>
+				</svg>
+			</div>
+		<h1 class="extra time-display">Hello!<br>+</h1>
+		<div class="timer-controls">
+			<ul>
+				<li><a class="btn btn-play-pause"></a></li>
+				<li><a class="btn btn-reset"></a></li>
+				<li><a class="btn btn-cancel"></a></li>	
+			</ul>
+		</div>
+		</div>
+	</div>
+</main>
   <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="main-min.js"></script>
 </body>
 

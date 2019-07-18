@@ -29,7 +29,6 @@
 	background-image: url('../img/icon_move list.svg');
 	background-repeat: no-repeat;
 	background-position: top center;
-	display:block;
 	width:32px;
 	height:32px;
 	float:left;
@@ -38,5 +37,36 @@
 	};
 	&:after{
 		clear:both;
+	}
+}
+.btn-play-pause{
+	background-image: url('../img/icon_main play.svg');
+	width:48px;
+	height:48px;
+	&:hover{
+		background-image: url('../img/icon_main play_active.svg');
+	};
+}
+.btn-play-pause.playing{
+	background-image: url('../img/icon_main stop.svg');
+	&:hover{
+		background-image: url('../img/icon_main stop_active.svg');
+	};
+}
+
+.btn-reset{
+	background-image: url('../img/icon_main restart.svg');
+	width:48px;
+	height:48px;
+	&:hover{
+		background-image: url('../img/icon_main restart_active.svg');
+	}
+}
+.btn-cancel{
+	background-image: url('../img/icon_main cancel.svg');
+	width:48px;
+	height:48px;
+	&:hover{
+		background-image: url('../img/icon_main cancel_active.svg');
 	}
 }

@@ -52,7 +52,113 @@ main{
 }
 .main{
 	position: relative;
+	width:50vw;
+	margin-left:calc(25vw - calc( #{$panel-size}*0.5));
+	text-align: center;
+	transition: all 1s;
+	&.menuopen{
+		transform:translateX(21vw);
+	}
 	h2{
 		margin-top:50px;
 	}
+	.timer{
+		position: relative;
+		width:50vh;
+		height:50vh;
+		margin-left:calc((50vw - 50vh)*0.5);
+		margin-top :5vh;
+		.outer-circle-trans{
+			position: absolute;
+			stroke:$light-blue;
+			stroke-width:5px;
+			fill:none;
+			opacity:0.2;
+		}
+		.outer-circle{
+			stroke:$light-blue;
+			stroke-width:5px;
+			fill:none;
+		}
+		.outer-circle.start{
+			transform: rotateY(0deg) rotateZ(-90deg);
+			circle{
+			  stroke-dasharray: calc(50vh*3.14);
+			  stroke-dashoffset: calc(50vh*3.14);
+			  stroke-linecap: square;
+			  fill:none;
+				animation: countdown 1500s linear 1 forwards;
+			}	
+		}
+		.anchor{
+			position: absolute;
+			top:2.5px;
+			left:calc(( 50vh - 10px )*0.5);
+			fill:$light-blue;
+		}
+		.inner-circle{
+			position: absolute;
+			top:calc((50vh - 40vh)*0.5);
+			left:calc((50vh - 40vh)*0.5);
+			fill:$orange;
+		}
+		.time-display{
+			position: absolute;
+			text-align:center;
+			top:calc(50% - 60px);
+			left:calc(50% - 95px);
+			cursor:default;
+		}
+		.timer-controls{
+			display:block;
+			margin-top:30px;
+			ul{
+				@include flexbox(row, center, center);
+				li{
+					margin:5px;
+				}
+			}
+		}
+	}
+	.timer.break{
+		.outer-circle-trans{
+			stroke:$orange;
+		}
+		.outer-circle{
+			stroke:$orange;
+		}	
+		.outer-circle.start{
+			  circle{
+				animation: countdown 300s linear 1 forwards;
+			}	
+		}
+		.anchor{
+			fill:$orange;
+		}
+		.inner-circle{
+			fill:$light-blue;
+		}
+	}
+	.timer.notask{
+		.time-display{
+			left:calc(50% - 110px);
+			cursor:pointer;
+		}
+		.timer-controls{
+			display:none;
+		}
+	}
+
+	
+	@keyframes countdown {
+	  from {
+	    stroke-dashoffset: 0px;
+	  }
+	  to {
+	    stroke-dashooffset: calc(50vh*3.14);
+	  }
+	}
+
+
+	
 }

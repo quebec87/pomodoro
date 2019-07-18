@@ -214,7 +214,6 @@ h4 {
 	background-image: url("../img/icon_move list.svg");
 	background-repeat: no-repeat;
 	background-position: top center;
-	display: block;
 	width: 32px;
 	height: 32px;
 	float: left;
@@ -226,6 +225,44 @@ h4 {
 
 .btn-move:after {
 	clear: both;
+}
+
+.btn-play-pause {
+	background-image: url("../img/icon_main play.svg");
+	width: 48px;
+	height: 48px;
+}
+
+.btn-play-pause:hover {
+	background-image: url("../img/icon_main play_active.svg");
+}
+
+.btn-play-pause.playing {
+	background-image: url("../img/icon_main stop.svg");
+}
+
+.btn-play-pause.playing:hover {
+	background-image: url("../img/icon_main stop_active.svg");
+}
+
+.btn-reset {
+	background-image: url("../img/icon_main restart.svg");
+	width: 48px;
+	height: 48px;
+}
+
+.btn-reset:hover {
+	background-image: url("../img/icon_main restart_active.svg");
+}
+
+.btn-cancel {
+	background-image: url("../img/icon_main cancel.svg");
+	width: 48px;
+	height: 48px;
+}
+
+.btn-cancel:hover {
+	background-image: url("../img/icon_main cancel_active.svg");
 }
 
 body {
@@ -290,17 +327,158 @@ main {
 	position: absolute;
 	top: 54px;
 	left: 54px;
-	z-index: 5;
+	z-index: 99;
 	width: calc(100vw - 54px);
 	height: calc(100% - 54px);
 }
 
 .main {
 	position: relative;
+	width: 50vw;
+	margin-left: calc(25vw - calc( 54px*0.5));
+	text-align: center;
+	-webkit-transition: all 1s;
+	transition: all 1s;
+}
+
+.main.menuopen {
+	-webkit-transform: translateX(21vw);
+	        transform: translateX(21vw);
 }
 
 .main h2 {
 	margin-top: 50px;
+}
+
+.main .timer {
+	position: relative;
+	width: 50vh;
+	height: 50vh;
+	margin-left: calc((50vw - 50vh)*0.5);
+	margin-top: 5vh;
+}
+
+.main .timer .outer-circle-trans {
+	position: absolute;
+	stroke: #1EEEFE;
+	stroke-width: 5px;
+	fill: none;
+	opacity: 0.2;
+}
+
+.main .timer .outer-circle {
+	stroke: #1EEEFE;
+	stroke-width: 5px;
+	fill: none;
+}
+
+.main .timer .outer-circle.start {
+	-webkit-transform: rotateY(0deg) rotateZ(-90deg);
+	        transform: rotateY(0deg) rotateZ(-90deg);
+}
+
+.main .timer .outer-circle.start circle {
+	stroke-dasharray: calc(50vh*3.14);
+	stroke-dashoffset: calc(50vh*3.14);
+	stroke-linecap: square;
+	fill: none;
+	-webkit-animation: countdown 1500s linear 1 forwards;
+	        animation: countdown 1500s linear 1 forwards;
+}
+
+.main .timer .anchor {
+	position: absolute;
+	top: 2.5px;
+	left: calc(( 50vh - 10px )*0.5);
+	fill: #1EEEFE;
+}
+
+.main .timer .inner-circle {
+	position: absolute;
+	top: calc((50vh - 40vh)*0.5);
+	left: calc((50vh - 40vh)*0.5);
+	fill: #E46713;
+}
+
+.main .timer .time-display {
+	position: absolute;
+	text-align: center;
+	top: calc(50% - 60px);
+	left: calc(50% - 95px);
+	cursor: default;
+}
+
+.main .timer .timer-controls {
+	display: block;
+	margin-top: 30px;
+}
+
+.main .timer .timer-controls ul {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+}
+
+.main .timer .timer-controls ul li {
+	margin: 5px;
+}
+
+.main .timer.break .outer-circle-trans {
+	stroke: #E46713;
+}
+
+.main .timer.break .outer-circle {
+	stroke: #E46713;
+}
+
+.main .timer.break .outer-circle.start circle {
+	-webkit-animation: countdown 300s linear 1 forwards;
+	        animation: countdown 300s linear 1 forwards;
+}
+
+.main .timer.break .anchor {
+	fill: #E46713;
+}
+
+.main .timer.break .inner-circle {
+	fill: #1EEEFE;
+}
+
+.main .timer.notask .time-display {
+	left: calc(50% - 110px);
+	cursor: pointer;
+}
+
+.main .timer.notask .timer-controls {
+	display: none;
+}
+
+@-webkit-keyframes countdown {
+	from {
+		stroke-dashoffset: 0px;
+	}
+	to {
+		stroke-dashooffset: calc(50vh*3.14);
+	}
+}
+
+@keyframes countdown {
+	from {
+		stroke-dashoffset: 0px;
+	}
+	to {
+		stroke-dashooffset: calc(50vh*3.14);
+	}
 }
 
 nav {
@@ -308,13 +486,15 @@ nav {
 	top: 54px;
 	left: 0;
 	z-index: 100;
-	width: 54px;
 	height: calc(100% - 54px);
+}
+
+nav:after {
+	clear: both;
 }
 
 .menu {
 	height: 100%;
-	width: auto;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -470,6 +650,12 @@ nav {
 	background-color: #fff;
 }
 
+.task-form .dateinput {
+	background-image: url("../img/icon_date.svg");
+	background-repeat: no-repeat;
+	background-position: calc(100% - 30px);
+}
+
 .task-form .parall-item {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -495,6 +681,7 @@ nav {
 	background-color: #fff;
 	width: calc(100% - 90px);
 	margin-left: 30px;
+	padding: 7px 10px;
 }
 
 .task-form input.orange-btn {
