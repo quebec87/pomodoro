@@ -1,5 +1,5 @@
 let timerInt;
-const timerStateArr = ['notask', 'working', 'break'];
+const timerStateArr = ['notask', 'working', 'break', 'done'];
 var timerState = timerStateArr[0];
 const workingDuration = 0.2;
 const breakDuration = 0.1;
@@ -7,8 +7,12 @@ const workingDurationSec = workingDuration * 60;
 const breakDurationSec = breakDuration * 60;
 let isPlaying = false;
 const display = $('.time-display');
+const dialog = $('.dialog-info p');
+const iconDotHtml = '<li class="icon-orange-dot"></li>';
 let taskArr;
 let currentTask;
+let currentTomato;
+let totalTomato;
 
 // ////////////MENU//////////////////
 function menuItemClicked() {
@@ -92,6 +96,9 @@ function storeTask(_add) {
     if (_add) {
         taskArr.push(taskObj);
         currentTask = taskArr[taskArr.length - 1];
+        totalTomato = currentTask.tomato;
+        currentTomato = 1;
+        setupTotalTomato(currentTask.tomato);
     }
 }
 
@@ -99,6 +106,8 @@ function clearForm() {
     $('#Task-Name').val('My Task');
     $('#Task-Date').val('');
     $('#Estimated-Tomato').val('1');
+    $('.tomato-count div').removeClass();
+    $('.tomato-count div').addClass('icon-orange-dot');
 }
 
 
@@ -114,21 +123,36 @@ function setClockState() {
         case timerStateArr[1]:
             $('.timer').removeClass('break');
             $('.timer').removeClass('notask');
+            $('.timer').removeClass('done');
             $('.add-task-start').css('display', 'none');
-            $('.current-task').html(currentTask.name);
+            $('.current-task h2').html(currentTask.name);
             $('.current-task').css('display', 'block');
             display.text(`${workingDuration}:00`);
             break;
         case timerStateArr[2]:
             $('.timer').addClass('break');
             $('.timer').removeClass('notask');
-            $('.add-task-start').css('display', 'none');
-            $('.current-task').html(currentTask.name);
-            $('.current-task').css('display', 'block');
+            $('.timer').removeClass('done');
+            //$('.add-task-start').css('display', 'none');
+            //$('.current-task h2').html(currentTask.name);
+            //$('.current-task').css('display', 'block');
             display.text(`${breakDuration}:00`);
+            break;
+        case timerStateArr[3]:
+            $('.timer').removeClass('break');
+            $('.timer').addClass('done');
+            display.text('');
             break;
     }
 }
+
+function setupTotalTomato(_count) {
+    $('.current-task .total-tomato').empty();
+    for (var i = 0; i < _count; i++) {
+        $('.current-task .total-tomato').append(iconDotHtml);
+    }
+}
+
 
 
 function playPauseClicked() {
@@ -190,10 +214,36 @@ function startTimer(duration, display) {
                 if (timerState == timerStateArr[1]) {
                     timerState = timerStateArr[2];
                     setClockState();
+                } else if (timerState == timerStateArr[2]) {
+                    var index = currentTomato - 1;
+                    $('.total-tomato li').eq(index).addClass('done');
+
+                    if (currentTomato == totalTomato) {
+                        timerState = timerStateArr[3];
+                        showDialog();
+                        setClockState();
+                        return;
+                    }
+                    currentTomato++;
+                    timerState = timerStateArr[1];
+                    showDialog();
+                    setClockState();
                 }
             }
         }
     }, 1000);
+}
+
+function showDialog() {
+    switch (timerState) {
+        case timerStateArr[1]:
+            dialog.html('Go for next tomato');
+            break;
+        case timerStateArr[3]:
+            dialog.html('Good Job. Task is done.');
+            break;
+    }
+    $('.dialog-info').addClass('show');
 }
 
 
@@ -218,4 +268,7 @@ $(document).ready(() => {
     $('.notask .time-display').on('click', addTaskClicked);
     $('.btn-play-pause').on('click', playPauseClicked);
     $('.btn-reset').on('click', resetClicked);
+    $('.btn-ok').on('click', function() {
+        $('.dialog-info').removeClass('show');
+    })
 });

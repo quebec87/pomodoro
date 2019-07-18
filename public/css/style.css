@@ -210,6 +210,13 @@ h4 {
 	border: 1px solid #125B6A !important;
 }
 
+.btn-ok {
+	width: 120px;
+	position: absolute;
+	bottom: 20px;
+	left: calc((100% - 120px)*0.5);
+}
+
 .btn-move {
 	background-image: url("../img/icon_move list.svg");
 	background-repeat: no-repeat;
@@ -350,6 +357,36 @@ main {
 	margin-top: 50px;
 }
 
+.main .current-task {
+	display: none;
+	position: relative;
+}
+
+.main .current-task .total-tomato {
+	margin-top: 10px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+}
+
+.main .current-task .total-tomato .icon-orange-dot {
+	margin: 5px;
+}
+
+.main .current-task .total-tomato .icon-orange-dot.done {
+	opacity: 0.5;
+}
+
 .main .timer {
 	position: relative;
 	width: 50vh;
@@ -363,7 +400,7 @@ main {
 	stroke: #1EEEFE;
 	stroke-width: 5px;
 	fill: none;
-	opacity: 0.2;
+	opacity: 0.3;
 }
 
 .main .timer .outer-circle {
@@ -404,7 +441,7 @@ main {
 	position: absolute;
 	text-align: center;
 	top: calc(50% - 60px);
-	left: calc(50% - 95px);
+	left: calc(50% - 107px);
 	cursor: default;
 }
 
@@ -431,6 +468,25 @@ main {
 
 .main .timer .timer-controls ul li {
 	margin: 5px;
+}
+
+.main .timer .dialog-info {
+	padding: 40px 20px;
+	width: 300px;
+	height: 150px;
+	text-align: center;
+	background-color: #fff;
+	border: 1px solid #125B6A;
+	color: #125B6A;
+	position: absolute;
+	top: calc(50% - 75px);
+	left: calc(50% - 150px);
+	border-radius: 20px;
+	display: none;
+}
+
+.main .timer .dialog-info.show {
+	display: block;
 }
 
 .main .timer.break .outer-circle-trans {
@@ -464,6 +520,10 @@ main {
 }
 
 .main .timer.notask .timer-controls {
+	display: none;
+}
+
+.main .timer.done .timer-controls {
 	display: none;
 }
 

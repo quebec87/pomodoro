@@ -37,7 +37,7 @@
   						<label for="Estimated-Tomato" class="textplus">Estimated-Tomato</label>
   						<div class="parall-item">
 	  						<select id="Estimated-Tomato" name="Estimated-Tomato" data-name="Estimated Tomato" required="" class="text-plus">
-	  							<option value="1">1</option>
+	  							<option value="1" selected="selected">1</option>
 	  							<option value="2">2</option>
 	  							<option value="3">3</option>
 	  							<option value="4">4</option>
@@ -74,7 +74,7 @@
   							<li class="text"><a class="btn icon-checked"></a>Task to do today<span class="icon-orange-dot-two"></span></li>
   							<li class="text"><a class="btn icon-checked"></a>Task to do today<span class="icon-orange-dot-three"></span></li>
   							<li class="text"><a class="btn icon-checked"></a>Task to do today<span class="icon-orange-dot-four"></span></li>
-  							<li class="text"><a class="btn icon-checked"></a>Task to do today<span class="icon-orange-dot-five"></span></li>
+  							<!-- <li class="text"><a class="btn icon-checked"></a>Task to do today<span class="icon-orange-dot-five"></span></li> -->
   						</ul>
   					</div>
   					<div class="control-holder">
@@ -152,7 +152,10 @@
 <main>
 	<div class="main">
 		<h2><a class="btn add-task-start">Add Your First Task to Start</a></h2>
-		<h2 class="current-task"></h2>
+		<div class="current-task">
+			<h2></h2>
+			<ul class="total-tomato"><li class="icon-orange-dot"></li><li class="icon-orange-dot"></li></ul>
+		</div>
 		<div class="timer notask">
 			<div class="clock">
 				<svg class="outer-circle-trans" width="50vh" height="50vh">
@@ -175,6 +178,10 @@
 				<li><a class="btn btn-reset"></a></li>
 				<li><a class="btn btn-cancel"></a></li>	
 			</ul>
+		</div>
+		<div class="dialog-info" id="dialogInfo">
+		    <p></p>
+			<a class="btn orange-btn round-btn btn-ok">OK</a>
 		</div>
 		</div>
 	</div>

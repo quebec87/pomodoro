@@ -25,6 +25,14 @@
 	};
 }
 
+.btn-ok{
+	width:120px;
+	position: absolute;
+	bottom:20px;
+	left:calc((100% - 120px)*0.5);
+}
+
+
 .btn-move{
 	background-image: url('../img/icon_move list.svg');
 	background-repeat: no-repeat;
