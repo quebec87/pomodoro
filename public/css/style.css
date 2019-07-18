@@ -382,8 +382,8 @@ main {
 	stroke-dashoffset: calc(50vh*3.14);
 	stroke-linecap: square;
 	fill: none;
-	-webkit-animation: countdown 1500s linear 1 forwards;
-	        animation: countdown 1500s linear 1 forwards;
+	-webkit-animation: countdown 6s linear 1 forwards;
+	        animation: countdown 6s linear 1 forwards;
 }
 
 .main .timer .anchor {
@@ -442,8 +442,8 @@ main {
 }
 
 .main .timer.break .outer-circle.start circle {
-	-webkit-animation: countdown 300s linear 1 forwards;
-	        animation: countdown 300s linear 1 forwards;
+	-webkit-animation: countdown 6s linear 1 forwards;
+	        animation: countdown 6s linear 1 forwards;
 }
 
 .main .timer.break .anchor {
@@ -452,6 +452,10 @@ main {
 
 .main .timer.break .inner-circle {
 	fill: #1EEEFE;
+}
+
+.main .timer.break .timer-controls {
+	display: block;
 }
 
 .main .timer.notask .time-display {

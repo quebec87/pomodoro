@@ -87,7 +87,7 @@ main{
 			  stroke-dashoffset: calc(50vh*3.14);
 			  stroke-linecap: square;
 			  fill:none;
-				animation: countdown 1500s linear 1 forwards;
+			  animation: countdown 6s linear 1 forwards;
 			}	
 		}
 		.anchor{
@@ -129,7 +129,7 @@ main{
 		}	
 		.outer-circle.start{
 			  circle{
-				animation: countdown 300s linear 1 forwards;
+			  animation: countdown 6s linear 1 forwards;
 			}	
 		}
 		.anchor{
@@ -137,6 +137,9 @@ main{
 		}
 		.inner-circle{
 			fill:$light-blue;
+		}
+		.timer-controls{
+			display:block;
 		}
 	}
 	.timer.notask{
