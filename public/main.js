@@ -7,6 +7,7 @@ const workingDurationSec = workingDuration * 60;
 const breakDurationSec = breakDuration * 60;
 const totalPei = 5;
 let timeGapArr = [workingDurationSec, workingDurationSec / 5 * 4, workingDurationSec / 5 * 3, workingDurationSec / 5 * 2, workingDurationSec / 5 * 1];
+let breakGapArr = [breakDurationSec, breakDurationSec / 5 * 4, breakDurationSec / 5 * 3, breakDurationSec / 5 * 2, breakDurationSec / 5];
 let isPlaying = false;
 const display = $('.time-display');
 const dialog = $('.dialog-info p');
@@ -17,6 +18,8 @@ let currentTomato;
 let totalTomato;
 const soundContext = new AudioContext();
 let isPlaySound = true;
+const orange = '#e46713';
+const lightblue = "#1EEEFE";
 
 // ////////////MENU//////////////////
 function menuItemClicked() {
@@ -147,8 +150,11 @@ function setClockState() {
             $('.add-task-start').css('display', 'none');
             $('.current-task h2').html(currentTask.name);
             $('.current-task').css('display', 'block');
-            for (var i = 0; i < 4; i++) {
-                $('.pie' + i).css('opacity', (i * 0.2) + 0.2);
+            for (var i = 0; i < 5; i++) {
+                $('.pie' + i).css({
+                    'opacity': (i * 0.2) + 0.2,
+                    'fill': orange
+                });
             }
             display.text(`${workingDuration}:00`);
             break;
@@ -159,6 +165,12 @@ function setClockState() {
             //$('.add-task-start').css('display', 'none');
             //$('.current-task h2').html(currentTask.name);
             //$('.current-task').css('display', 'block');
+            for (var i = 0; i < 5; i++) {
+                $('.pie' + i).css({
+                    'opacity': (i * 0.2) + 0.2,
+                    'fill': lightblue
+                });
+            }
             display.text(`${breakDuration}:00`);
             break;
         case timerStateArr[3]:
@@ -263,20 +275,22 @@ function startTimer(duration, display) {
 }
 
 function checkTimeGap(_timer) {
-    console.log("timeGap" + timeGapArr + "checkTimeGap" + _timer);
-    if (_timer < timeGapArr[1] && _timer > timeGapArr[2]) {
+    var Arr;
+    (timerState == timerStateArr[1]) ? Arr = timeGapArr: Arr = breakGapArr;
+
+    if (_timer < Arr[1] && _timer > Arr[2]) {
         $('.pie4').css('opacity', 0.1);
         $('.pie3').css('opacity', 1);
         return;
-    } else if (_timer < timeGapArr[2] && _timer > timeGapArr[3]) {
+    } else if (_timer < Arr[2] && _timer > Arr[3]) {
         $('.pie3').css('opacity', 0.1);
         $('.pie2').css('opacity', 1);
         return;
-    } else if (_timer < timeGapArr[3] && _timer > timeGapArr[4]) {
+    } else if (_timer < Arr[3] && _timer > Arr[4]) {
         $('.pie2').css('opacity', 0.1);
         $('.pie1').css('opacity', 1);
         return;
-    } else if (_timer < timeGapArr[4]) {
+    } else if (_timer < Arr[4]) {
         $('.pie1').css('opacity', 0.1);
         $('.pie0').css('opacity', 1);
         return;
