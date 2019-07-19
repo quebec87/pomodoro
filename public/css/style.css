@@ -272,6 +272,17 @@ h4 {
 	background-image: url("../img/icon_main cancel_active.svg");
 }
 
+.btn-sound {
+	background-image: url("../img/icon_ring open.svg");
+	margin-left: 10px;
+	width: 32px;
+	height: 32px;
+}
+
+.btn-sound.off {
+	background-image: url("../img/icon_ring close.svg");
+}
+
 body {
 	background: #125B6A;
 	color: #fff;
@@ -353,13 +364,30 @@ main {
 	        transform: translateX(21vw);
 }
 
-.main h2 {
+.main .add-task-start {
 	margin-top: 50px;
 }
 
 .main .current-task {
 	display: none;
+	margin-top: 50px;
 	position: relative;
+}
+
+.main .current-task .task-title-holder {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 }
 
 .main .current-task .total-tomato {
@@ -699,6 +727,10 @@ nav:after {
 
 .task-form input:focus, .task-form select:focus, .task-form .tomato-count:focus {
 	border: 1px solid #125B6A;
+}
+
+.task-form input.alert, .task-form select.alert, .task-form .tomato-count.alert {
+	border: 1px solid #E46713;
 }
 
 .task-form input {

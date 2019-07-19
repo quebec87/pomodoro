@@ -102,6 +102,9 @@ nav{
 		&:focus{
 			border: 1px solid $primary-color;
 		};
+		&.alert{
+			border: 1px solid $orange;
+		}
 	}
 	input{
 		padding:0 30px;

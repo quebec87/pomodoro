@@ -13,6 +13,8 @@ let taskArr;
 let currentTask;
 let currentTomato;
 let totalTomato;
+const soundContext = new AudioContext();
+let isPlaySound = true;
 
 // ////////////MENU//////////////////
 function menuItemClicked() {
@@ -74,6 +76,19 @@ function setTomatoCount() {
 
 function addtaskSubmitted(e) {
     e.preventDefault();
+    var name = $('#Task-Name').val();
+    var date = $('#Task-Date').val();
+    var tomato = $('#Estimated-Tomato').val();
+    if (name == "") {
+        $('#Task-Name').addClass('alert');
+        return;
+    } else if (date == "") {
+        $('#Task-Date').addClass('alert');
+        return;
+    } else if (tomato == "") {
+        $('#Estimated-Tomato').addClass('alert');
+        return;
+    }
     storeTask(true);
     clearForm();
     closeMenuPanel();
@@ -103,6 +118,9 @@ function storeTask(_add) {
 }
 
 function clearForm() {
+    $('#Task-Name').removeClass('alert');
+    $('#Task-Date').removeClass('alert');
+    $('#Estimated-Tomato').removeClass('alert');
     $('#Task-Name').val('My Task');
     $('#Task-Date').val('');
     $('#Estimated-Tomato').val('1');
@@ -141,7 +159,7 @@ function setClockState() {
         case timerStateArr[3]:
             $('.timer').removeClass('break');
             $('.timer').addClass('done');
-            display.text('');
+            display.html('Done!');
             break;
     }
 }
@@ -207,10 +225,14 @@ function startTimer(duration, display) {
 
             display.text(`${minutes}:${seconds}`);
 
-            if (--timer < 0) {
+            if (--timer <= 0) {
                 // timer = duration;
                 timer = 0;
                 resetClicked();
+                if (isPlaySound == true) {
+                    beep(100, 520, 200);
+                }
+
                 if (timerState == timerStateArr[1]) {
                     timerState = timerStateArr[2];
                     setClockState();
@@ -246,6 +268,29 @@ function showDialog() {
     $('.dialog-info').addClass('show');
 }
 
+function playSoundBtnClicked() {
+    if (!$('.btn-sound').hasClass('off')) {
+        $(".btn-sound").addClass('off');
+        isPlaySound = false;
+    } else {
+        $('.btn-sound').removeClass('off');
+        isPlaySound = true;
+    }
+}
+
+
+function beep(vol, freq, duration) {
+    v = soundContext.createOscillator()
+    u = soundContext.createGain()
+    v.connect(u)
+    v.frequency.value = freq
+    v.type = "square"
+    u.connect(soundContext.destination)
+    u.gain.value = vol * 0.01
+    v.start(soundContext.currentTime)
+    v.stop(soundContext.currentTime + duration * 0.001)
+}
+
 
 $(document).ready(() => {
     taskArr = [];
@@ -264,11 +309,12 @@ $(document).ready(() => {
         closeMenuPanel();
     });
 
-    $('.add-task-start').on('click', addTaskClicked);
+    $('.add-task-start .btn').on('click', addTaskClicked);
     $('.notask .time-display').on('click', addTaskClicked);
     $('.btn-play-pause').on('click', playPauseClicked);
     $('.btn-reset').on('click', resetClicked);
     $('.btn-ok').on('click', function() {
         $('.dialog-info').removeClass('show');
     })
+    $('.btn-sound').on('click', playSoundBtnClicked);
 });

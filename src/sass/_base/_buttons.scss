@@ -78,3 +78,13 @@
 		background-image: url('../img/icon_main cancel_active.svg');
 	}
 }
+
+.btn-sound{
+	background-image: url('../img/icon_ring open.svg');
+	margin-left:10px;
+	width:32px;
+	height:32px;
+	&.off{
+		background-image: url('../img/icon_ring close.svg');
+	}
+}

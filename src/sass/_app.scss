@@ -59,12 +59,16 @@ main{
 	&.menuopen{
 		transform:translateX(21vw);
 	}
-	h2{
+	.add-task-start{
 		margin-top:50px;
 	}
 	.current-task{
 		display:none;
+		margin-top:50px;
 		position: relative;
+		.task-title-holder{
+			@include flexbox(row, center, center);
+		}
 		.total-tomato{
 			margin-top:10px;
 			@include flexbox(row, center, center);
