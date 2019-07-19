@@ -462,7 +462,6 @@ main {
 	position: absolute;
 	top: calc((50vh - 40vh)*0.5);
 	left: calc((50vh - 40vh)*0.5);
-	fill: #E46713;
 }
 
 .main .timer .time-display {
@@ -532,10 +531,6 @@ main {
 
 .main .timer.break .anchor {
 	fill: #E46713;
-}
-
-.main .timer.break .inner-circle {
-	fill: #1EEEFE;
 }
 
 .main .timer.break .timer-controls {

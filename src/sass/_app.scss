@@ -118,8 +118,10 @@ main{
 			position: absolute;
 			top:calc((50vh - 40vh)*0.5);
 			left:calc((50vh - 40vh)*0.5);
-			fill:$orange;
+			//fill:$orange;
 		}
+
+
 		.time-display{
 			position: absolute;
 			text-align:center;
@@ -171,7 +173,7 @@ main{
 			fill:$orange;
 		}
 		.inner-circle{
-			fill:$light-blue;
+			//fill:$light-blue;
 		}
 		.timer-controls{
 			display:block;
@@ -201,6 +203,7 @@ main{
 	    stroke-dashooffset: calc(50vh*3.14);
 	  }
 	}
+
 
 
 	

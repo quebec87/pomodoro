@@ -5,6 +5,8 @@ const workingDuration = 0.2;
 const breakDuration = 0.1;
 const workingDurationSec = workingDuration * 60;
 const breakDurationSec = breakDuration * 60;
+const totalPei = 5;
+let timeGapArr = [workingDurationSec, workingDurationSec / 5 * 4, workingDurationSec / 5 * 3, workingDurationSec / 5 * 2, workingDurationSec / 5 * 1];
 let isPlaying = false;
 const display = $('.time-display');
 const dialog = $('.dialog-info p');
@@ -145,6 +147,9 @@ function setClockState() {
             $('.add-task-start').css('display', 'none');
             $('.current-task h2').html(currentTask.name);
             $('.current-task').css('display', 'block');
+            for (var i = 0; i < 4; i++) {
+                $('.pie' + i).css('opacity', (i * 0.2) + 0.2);
+            }
             display.text(`${workingDuration}:00`);
             break;
         case timerStateArr[2]:
@@ -217,22 +222,22 @@ function startTimer(duration, display) {
     let seconds;
     timerInt = window.setInterval(() => {
         if (isPlaying == true) {
+            timer--;
             minutes = parseInt(timer / 60, 10);
             seconds = parseInt(timer % 60, 10);
 
             minutes = minutes < 10 ? `0${minutes}` : minutes;
             seconds = seconds < 10 ? `0${seconds}` : seconds;
-
             display.text(`${minutes}:${seconds}`);
-
-            if (--timer <= 0) {
+            checkTimeGap(timer);
+            if (timer <= 0) {
                 // timer = duration;
                 timer = 0;
                 resetClicked();
                 if (isPlaySound == true) {
                     beep(100, 520, 200);
                 }
-
+                $('.pie0').css('opacity', 0.1);
                 if (timerState == timerStateArr[1]) {
                     timerState = timerStateArr[2];
                     setClockState();
@@ -252,8 +257,33 @@ function startTimer(duration, display) {
                     setClockState();
                 }
             }
+
         }
     }, 1000);
+}
+
+function checkTimeGap(_timer) {
+    console.log("timeGap" + timeGapArr + "checkTimeGap" + _timer);
+    if (_timer < timeGapArr[1] && _timer > timeGapArr[2]) {
+        $('.pie4').css('opacity', 0.1);
+        $('.pie3').css('opacity', 1);
+        return;
+    } else if (_timer < timeGapArr[2] && _timer > timeGapArr[3]) {
+        $('.pie3').css('opacity', 0.1);
+        $('.pie2').css('opacity', 1);
+        return;
+    } else if (_timer < timeGapArr[3] && _timer > timeGapArr[4]) {
+        $('.pie2').css('opacity', 0.1);
+        $('.pie1').css('opacity', 1);
+        return;
+    } else if (_timer < timeGapArr[4]) {
+        $('.pie1').css('opacity', 0.1);
+        $('.pie0').css('opacity', 1);
+        return;
+    } else if (_timer <= 0) {
+        $('.pie0').css('opacity', 0.1);
+        return;
+    }
 }
 
 function showDialog() {
@@ -280,22 +310,65 @@ function playSoundBtnClicked() {
 
 
 function beep(vol, freq, duration) {
-    v = soundContext.createOscillator()
-    u = soundContext.createGain()
-    v.connect(u)
-    v.frequency.value = freq
-    v.type = "square"
-    u.connect(soundContext.destination)
-    u.gain.value = vol * 0.01
-    v.start(soundContext.currentTime)
-    v.stop(soundContext.currentTime + duration * 0.001)
+    v = soundContext.createOscillator();
+    u = soundContext.createGain();
+    v.connect(u);
+    v.frequency.value = freq;
+    v.type = "square";
+    u.connect(soundContext.destination);
+    u.gain.value = vol * 0.01;
+    v.start(soundContext.currentTime);
+    v.stop(soundContext.currentTime + duration * 0.001);
+}
+
+function getPie() {
+    var size = $('.inner-circle').width();
+    var radius = (Math.round(size * 10) / 10) * 0.5;
+    var piePercent = 0.2; ///inner-circle are 5 pie, each is 20%
+    var percentageSum = 0;
+    var startXY = {
+        x: 0,
+        y: -radius
+    };
+
+    ///inner-circle are 5 pie, each is 20%
+    for (var i = 0; i < totalPei; i++) {
+        percentageSum += piePercent;
+        var angle = Math.PI * 2 * percentageSum;
+        var largeArcFlag = piePercent > .5 ? 1 : 0;
+        var endXY = {
+            x: radius * Math.sin(angle),
+            y: radius * Math.cos(angle) * -1,
+        };
+        let nextXY = {
+            x: endXY.x,
+            y: endXY.y
+        };
+        var centerXY = {
+            x: 0,
+            y: 0
+        }
+        let moveCommand = "M" + (startXY.x + radius) + "," + (startXY.y + radius);
+        let arcCommand = "A" + radius + "," + radius + ",0," + largeArcFlag + ",1," + (endXY.x + radius) + "," + (endXY.y + radius);
+        let lineCommand = "L" + (radius + centerXY.x) + "," + (radius + centerXY.y);
+        let closePathCommand = "Z";
+        startXY = nextXY;
+        let d = moveCommand + arcCommand + lineCommand + closePathCommand;
+        let sliceEl = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+        sliceEl.setAttribute("d", d);
+        sliceEl.setAttribute("fill", '#e46713');
+        sliceEl.setAttribute('class', 'pie' + i);
+        $('.inner-circle').append(sliceEl);
+    }
+
 }
 
 
 $(document).ready(() => {
     taskArr = [];
+    getPie();
     menuItemClicked(); // menubar
-    // menupanel
+    // menupanel.  
     $('#Task-Date').datepicker();
     $('#Task-List-Date').datepicker();
     $('#Analytics-Date').datepicker();
