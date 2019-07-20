@@ -458,6 +458,47 @@ main {
 	fill: #1EEEFE;
 }
 
+.main .timer .time-scale {
+	visibility: hidden;
+	position: absolute;
+	top: 5vh;
+	left: 5vh;
+}
+
+.main .timer .time-scale ul {
+	position: relative;
+}
+
+.main .timer .time-scale ul li:nth-child(1) {
+	position: absolute;
+	left: calc( (40vh - 20px) * 0.5);
+	top: -20px;
+}
+
+.main .timer .time-scale ul li:nth-child(2) {
+	position: absolute;
+	left: -1.19074vh;
+	top: 10.61057vh;
+}
+
+.main .timer .time-scale ul li:nth-child(3) {
+	position: absolute;
+	left: 7.65651vh;
+	top: 36.98936vh;
+}
+
+.main .timer .time-scale ul li:nth-child(4) {
+	position: absolute;
+	left: 31.75571vh;
+	top: 36.18034vh;
+}
+
+.main .timer .time-scale ul li:nth-child(5) {
+	position: absolute;
+	left: 39.97219vh;
+	top: 12.58359vh;
+}
+
 .main .timer .inner-circle {
 	position: absolute;
 	top: calc((50vh - 40vh)*0.5);
@@ -468,7 +509,7 @@ main {
 	position: absolute;
 	text-align: center;
 	top: calc(50% - 60px);
-	left: calc(50% - 107px);
+	left: calc(50% - 92px);
 	cursor: default;
 }
 
@@ -544,6 +585,10 @@ main {
 
 .main .timer.notask .timer-controls {
 	display: none;
+}
+
+.main .timer.done .time-display {
+	left: calc(50% - 110px);
 }
 
 .main .timer.done .timer-controls {
@@ -814,6 +859,11 @@ nav:after {
 .pan-content li span:after {
 	content: '';
 	clear: both;
+}
+
+#chart-holder {
+	background-color: white;
+	margin-bottom: 20px;
 }
 
 .control-holder {

@@ -1,8 +1,8 @@
 let timerInt;
 const timerStateArr = ['notask', 'working', 'break', 'done'];
 var timerState = timerStateArr[0];
-const workingDuration = 0.2;
-const breakDuration = 0.1;
+const workingDuration = 25;
+const breakDuration = 5;
 const workingDurationSec = workingDuration * 60;
 const breakDurationSec = breakDuration * 60;
 const totalPei = 5;
@@ -141,6 +141,7 @@ function setClockState() {
             $('.current-task').css('display', 'none');
             $('.timer').removeClass('break');
             $('.timer').addClass('notask');
+            $('.time-scale').css('visibility', 'hidden');
             display.html('Hello!<br>+');
             break;
         case timerStateArr[1]:
@@ -155,7 +156,10 @@ function setClockState() {
                     'opacity': (i * 0.2) + 0.2,
                     'fill': orange
                 });
+                var child = '.time-scale li:nth-child(' + (i + 1) + ')';
+                $(child).text((5 - i) * 5);
             }
+            $('.time-scale').css('visibility', 'visible');
             display.text(`${workingDuration}:00`);
             break;
         case timerStateArr[2]:
@@ -170,7 +174,10 @@ function setClockState() {
                     'opacity': (i * 0.2) + 0.2,
                     'fill': lightblue
                 });
+                var child = '.time-scale li:nth-child(' + (i + 1) + ')';
+                $(child).text(5 - i);
             }
+            $('.time-scale').css('visibility', 'visible');
             display.text(`${breakDuration}:00`);
             break;
         case timerStateArr[3]:
@@ -370,7 +377,11 @@ function getPie() {
         let d = moveCommand + arcCommand + lineCommand + closePathCommand;
         let sliceEl = document.createElementNS("http://www.w3.org/2000/svg", 'path');
         sliceEl.setAttribute("d", d);
-        sliceEl.setAttribute("fill", '#e46713');
+        if (timerState == timerStateArr[0] || timerState == timerStateArr[1]) {
+            sliceEl.setAttribute("fill", orange);
+        } else {
+            sliceEl.setAttribute("fill", lightblue);
+        }
         sliceEl.setAttribute('class', 'pie' + i);
         $('.inner-circle').append(sliceEl);
     }
@@ -405,3 +416,83 @@ $(document).ready(() => {
     })
     $('.btn-sound').on('click', playSoundBtnClicked);
 });
+window.onload = function() {
+    var ctx = document.getElementById('chart-holder');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            label: ' ',
+            labels: ['7/15', '7/16', '7/17', '7/18', '7/19', '7/20', '7/21'],
+            datasets: [{
+                data: [6, 6, 4, 6, 6, 0, 0],
+                backgroundColor: [
+                    lightblue,
+                    lightblue,
+                    lightblue,
+                    'rgba(200, 200, 200, 1)',
+                    'rgba(200, 200, 200, 1)',
+                    'rgba(200, 200, 200, 1)',
+                    'rgba(200, 200, 200, 1)'
+                ],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            layout: {
+                padding: {
+                    top: 50,
+                    bottom: 10
+                }
+            },
+            "hover": {
+                "animationDuration": 0
+            },
+            "animation": {
+                "duration": 1,
+                "onComplete": function() {
+                    var chartInstance = this.chart,
+                        ctx = chartInstance.ctx;
+
+                    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'bottom';
+                    ctx.fillStyle = orange;
+
+                    this.data.datasets.forEach(function(dataset, i) {
+                        var meta = chartInstance.controller.getDatasetMeta(i);
+                        meta.data.forEach(function(bar, index) {
+                            var data = dataset.data[index];
+                            if (data != 0) {
+                                ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                            }
+                        });
+                    });
+                }
+            },
+            tooltips: {
+                "enabled": false
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        display: false
+                    },
+                    gridLines: {
+                        color: "rgba(0, 0, 0, 0)"
+                    }
+                }],
+                xAxes: [{
+                    barPercentage: 0.5,
+                    barThickness: 6,
+                    gridLines: {
+                        color: "rgba(0, 0, 0, 0)"
+                    }
+                }]
+            },
+            legend: {
+                display: false
+            }
+        }
+    });
+
+}

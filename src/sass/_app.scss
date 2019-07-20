@@ -114,6 +114,44 @@ main{
 			left:calc(( 50vh - 10px )*0.5);
 			fill:$light-blue;
 		}
+		.time-scale{
+			visibility: hidden;
+			position: absolute;
+			top:5vh;
+			left:5vh;
+			ul{
+				position: relative;
+				li:nth-child(1){
+					position: absolute;
+					left:calc( (40vh - 20px) * 0.5);
+					top:-20px;
+				}
+				li:nth-child(2){
+					position: absolute;
+				    left:20vh - cos(28deg)*24vh;
+				    top:20vh - sin(28deg)*20vh;
+				}
+				li:nth-child(3){
+					position: absolute;
+					left:20vh - sin(36deg)*21vh;
+					top:20vh - cos(36deg)*21vh*-1;
+
+				}
+				li:nth-child(4){
+					position:absolute;
+					left:20vh + sin(36deg)*20vh;
+					top: 20vh - cos(36deg)*20vh*-1;
+				}	
+				li:nth-child(5){
+					position:absolute;
+					left: 20vh - cos(18deg)*21vh*-1;
+					top: 20vh  - sin(18deg)*24vh;
+				}			
+
+
+
+			}
+		}
 		.inner-circle{
 			position: absolute;
 			top:calc((50vh - 40vh)*0.5);
@@ -126,7 +164,7 @@ main{
 			position: absolute;
 			text-align:center;
 			top:calc(50% - 60px);
-			left:calc(50% - 107px);
+			left:calc(50% - 92px);
 			cursor:default;
 		}
 		.timer-controls{
@@ -189,6 +227,9 @@ main{
 		}
 	}
 	 .timer.done{
+	 	.time-display{
+			left:calc(50% - 110px);
+		}
 	 	.timer-controls{
 			display:none;
 		}

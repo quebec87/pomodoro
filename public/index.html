@@ -78,8 +78,8 @@
   						</ul>
   					</div>
   					<div class="control-holder">
-	  					<a href="" class="btn orange-btn round-btn"><img class="reverse" src="img/icon_next date.svg"/></a>
-	  					<a href="" class="btn orange-btn round-btn"><img src="img/icon_next date.svg"/></a>
+	  					<a  class="btn orange-btn round-btn"><img class="reverse" src="img/icon_next date.svg"/></a>
+	  					<a  class="btn orange-btn round-btn"><img src="img/icon_next date.svg"/></a>
 	  				</div>
   				</div>
   			</div>
@@ -104,12 +104,12 @@
   								<p class="large">4/6<span class="small">Today</span></p>
   								<p class="large">16/30<span class="small">Week</span></p>
   							</div>
-  							<canvas></canvas>
+  							<canvas id="chart-holder"></canvas>
   						</div>
   					</div>
   					<div class="control-holder">
-	  					<a href="" class="btn orange-btn round-btn"><img class="reverse" src="img/icon_next date.svg"/></a>
-	  					<a href="" class="btn orange-btn round-btn"><img src="img/icon_next date.svg"/></a>
+	  					<a  class="btn orange-btn round-btn"><img class="reverse" src="img/icon_next date.svg"/></a>
+	  					<a  class="btn orange-btn round-btn"><img src="img/icon_next date.svg"/></a>
 	  				</div>
   				</div>
   			</div>	 
@@ -167,10 +167,17 @@
 				<svg class="anchor" width="10px" height="10px">
 					<circle r="5" cx="50%" cy="50%"></circle>
 				</svg>
-				<!-- <div class="inner-circle-container" width="40vh" height="40vh"> -->
+				<div class="time-scale">
+					<ul>
+						<li>25</li>
+						<li>20</li>
+						<li>15</li>
+						<li>10</li>
+						<li>5</li>
+					</ul>
+				</div>
 					<svg class="inner-circle" width="40vh" height="40vh">
 						<!-- <circle r="20vh" cx="50%" cy="50%"></circle> -->
-					
 					</svg>
 				<!-- </div> -->
 			</div>
@@ -194,6 +201,7 @@
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="main-min.js"></script>
 </body>
 

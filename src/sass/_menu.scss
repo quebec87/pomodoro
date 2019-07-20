@@ -172,6 +172,10 @@ nav{
 		}
 	}
 }
+#chart-holder{
+	background-color: white;
+	margin-bottom:20px;
+}
 .control-holder{
 	@include flexbox(row, center, space-between);
 	.orange-btn{
