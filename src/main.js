@@ -1,8 +1,8 @@
 let timerInt;
 const timerStateArr = ['notask', 'working', 'break', 'done'];
 var timerState = timerStateArr[0];
-const workingDuration = 0.2;
-const breakDuration = 0.1;
+const workingDuration = 25;
+const breakDuration = 5;
 const workingDurationSec = workingDuration * 60;
 const breakDurationSec = breakDuration * 60;
 const totalPei = 5;
@@ -256,6 +256,7 @@ function deleteTaskSureClicked() {
     resetClicked();
     timerState = timerStateArr[0];
     setClockState();
+    taskArr.pop(); //temp!
     closeMenuPanel();
 }
 
@@ -435,9 +436,9 @@ $(document).ready(() => {
     $('.notask .time-display').on('click', addTaskClicked);
     $('.btn-play-pause').on('click', playPauseClicked);
     $('.btn-reset').on('click', resetClicked);
-    //$('.btn-delete').on('click', deleteTaskClicked);
-    //$('.btn-cancel').on('click', closeMenuPanel);
-    //$('.btn-delete-sure').on('click', deleteTaskSureClicked);
+    $('.btn-delete').on('click', deleteTaskClicked);
+    $('.btn-cancel').on('click', closeMenuPanel);
+    $('.btn-delete-sure').on('click', deleteTaskSureClicked);
     $('.btn-ok').on('click', function() {
         $('.dialog-info').removeClass('show');
     })
