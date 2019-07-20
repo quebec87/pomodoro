@@ -435,9 +435,9 @@ $(document).ready(() => {
     $('.notask .time-display').on('click', addTaskClicked);
     $('.btn-play-pause').on('click', playPauseClicked);
     $('.btn-reset').on('click', resetClicked);
-    $('.btn-delete').on('click', deleteTaskClicked);
-    $('.btn-cancel').on('click', closeMenuPanel);
-    $('.btn-delete-sure').on('click', deleteTaskSureClicked);
+    //$('.btn-delete').on('click', deleteTaskClicked);
+    //$('.btn-cancel').on('click', closeMenuPanel);
+    //$('.btn-delete-sure').on('click', deleteTaskSureClicked);
     $('.btn-ok').on('click', function() {
         $('.dialog-info').removeClass('show');
     })
