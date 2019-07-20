@@ -1,8 +1,8 @@
 let timerInt;
 const timerStateArr = ['notask', 'working', 'break', 'done'];
 var timerState = timerStateArr[0];
-const workingDuration = 25;
-const breakDuration = 5;
+const workingDuration = 0.2;
+const breakDuration = 0.1;
 const workingDurationSec = workingDuration * 60;
 const breakDurationSec = breakDuration * 60;
 const totalPei = 5;
@@ -45,13 +45,20 @@ function openMenuPanel() {
 }
 
 function showPanContent() {
-    const index = $('.menuitem.active').index();
-    $('.menupan-content').siblings().removeClass('show');
-    $('.menupan-content').eq(index).addClass('show');
+    if ($('.menuitem').hasClass('active')) {
+        const index = $('.menuitem.active').index();
+        $('.menupan-content').siblings().removeClass('show');
+        $('.menupan-content').eq(index).addClass('show');
+    } else {
+        $('.menupan-content').siblings().removeClass('show');
+        $('.menupan-content').eq(4).addClass('show');
+    }
 }
 
 function closeMenuPanel() {
+    $('.menuitem').removeClass('active');
     $('.menupanel').removeClass('open');
+    $('.menupan-content').removeClass('show');
     $('.main').removeClass('menuopen');
 }
 
@@ -141,7 +148,14 @@ function setClockState() {
             $('.current-task').css('display', 'none');
             $('.timer').removeClass('break');
             $('.timer').addClass('notask');
+            for (var i = 0; i < 5; i++) {
+                $('.pie' + i).css({
+                    'opacity': 1,
+                    'fill': orange
+                });
+            }
             $('.time-scale').css('visibility', 'hidden');
+
             display.html('Hello!<br>+');
             break;
         case timerStateArr[1]:
@@ -166,9 +180,7 @@ function setClockState() {
             $('.timer').addClass('break');
             $('.timer').removeClass('notask');
             $('.timer').removeClass('done');
-            //$('.add-task-start').css('display', 'none');
-            //$('.current-task h2').html(currentTask.name);
-            //$('.current-task').css('display', 'block');
+            $('.current-task h2').html('Time to Take a Break');
             for (var i = 0; i < 5; i++) {
                 $('.pie' + i).css({
                     'opacity': (i * 0.2) + 0.2,
@@ -233,6 +245,18 @@ function resetClicked() {
             display.text(`${breakDuration}:00`);
         }
     }
+}
+
+function deleteTaskClicked() {
+    $('.warning p').html(currentTask.name);
+    openMenuPanel();
+}
+
+function deleteTaskSureClicked() {
+    resetClicked();
+    timerState = timerStateArr[0];
+    setClockState();
+    closeMenuPanel();
 }
 
 function startTimer(duration, display) {
@@ -411,6 +435,9 @@ $(document).ready(() => {
     $('.notask .time-display').on('click', addTaskClicked);
     $('.btn-play-pause').on('click', playPauseClicked);
     $('.btn-reset').on('click', resetClicked);
+    $('.btn-delete').on('click', deleteTaskClicked);
+    $('.btn-cancel').on('click', closeMenuPanel);
+    $('.btn-delete-sure').on('click', deleteTaskSureClicked);
     $('.btn-ok').on('click', function() {
         $('.dialog-info').removeClass('show');
     })
@@ -494,5 +521,4 @@ window.onload = function() {
             }
         }
     });
-
 }

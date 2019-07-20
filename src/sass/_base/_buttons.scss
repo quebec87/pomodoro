@@ -19,6 +19,7 @@
 .orange-btn{
 	background-color:$orange;
 	color:$sec-color;
+	border:1px solid $orange;
 	&:hover{
 		background-color: $primary-color;
 		border:1px solid $primary-color !important;
@@ -70,7 +71,7 @@
 		background-image: url('../img/icon_main restart_active.svg');
 	}
 }
-.btn-cancel{
+.btn-delete{
 	background-image: url('../img/icon_main cancel.svg');
 	width:48px;
 	height:48px;

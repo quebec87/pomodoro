@@ -203,6 +203,7 @@ h4 {
 .orange-btn {
 	background-color: #E46713;
 	color: #fff;
+	border: 1px solid #E46713;
 }
 
 .orange-btn:hover {
@@ -262,13 +263,13 @@ h4 {
 	background-image: url("../img/icon_main restart_active.svg");
 }
 
-.btn-cancel {
+.btn-delete {
 	background-image: url("../img/icon_main cancel.svg");
 	width: 48px;
 	height: 48px;
 }
 
-.btn-cancel:hover {
+.btn-delete:hover {
 	background-image: url("../img/icon_main cancel_active.svg");
 }
 
@@ -742,6 +743,15 @@ nav:after {
 	display: block;
 }
 
+.menupan-content.warning {
+	padding: 30vh 40px 0 40px;
+}
+
+.menupan-content.warning p {
+	padding: 20px 40px 80px 40px;
+	color: #125B6A;
+}
+
 .task-form {
 	padding: 0 40px 20px 40px;
 }
@@ -893,6 +903,21 @@ nav:after {
 
 .control-holder .round-btn img {
 	padding-left: 5px;
+}
+
+.control-holder .btn-cancel {
+	width: 180px;
+	background-color: #125B6A;
+	border: 1px solid #125B6A;
+}
+
+.control-holder .btn-cancel:hover {
+	background-color: #E46713;
+	border: 1px solid #E46713 !important;
+}
+
+.control-holder .btn-delete-sure {
+	width: 180px;
 }
 
 .tab-menu ul {
