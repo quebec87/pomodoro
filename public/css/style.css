@@ -427,14 +427,14 @@ main {
 .main .timer .outer-circle-trans {
 	position: absolute;
 	stroke: #1EEEFE;
-	stroke-width: 5px;
+	stroke-width: 1vh;
 	fill: none;
 	opacity: 0.3;
 }
 
 .main .timer .outer-circle {
 	stroke: #1EEEFE;
-	stroke-width: 5px;
+	stroke-width: 1vh;
 	fill: none;
 }
 
@@ -444,8 +444,8 @@ main {
 }
 
 .main .timer .outer-circle.start circle {
-	stroke-dasharray: calc(50vh*3.14);
-	stroke-dashoffset: calc(50vh*3.14);
+	stroke-dasharray: 153.86vh;
+	stroke-dashoffset: 153.86vh;
 	stroke-linecap: square;
 	fill: none;
 	-webkit-animation: countdown 6s linear 1 forwards;
@@ -454,8 +454,8 @@ main {
 
 .main .timer .anchor {
 	position: absolute;
-	top: 2.5px;
-	left: calc(( 50vh - 10px )*0.5);
+	top: -0.5vh;
+	left: calc(( 50vh - 2vh )*0.5);
 	fill: #1EEEFE;
 }
 
@@ -473,19 +473,19 @@ main {
 .main .timer .time-scale ul li:nth-child(1) {
 	position: absolute;
 	left: calc( (40vh - 20px) * 0.5);
-	top: -20px;
+	top: -3vh;
 }
 
 .main .timer .time-scale ul li:nth-child(2) {
 	position: absolute;
-	left: -1.19074vh;
-	top: 10.61057vh;
+	left: -2.15895vh;
+	top: 11.61057vh;
 }
 
 .main .timer .time-scale ul li:nth-child(3) {
 	position: absolute;
-	left: 7.65651vh;
-	top: 36.98936vh;
+	left: 6.24429vh;
+	top: 36.18034vh;
 }
 
 .main .timer .time-scale ul li:nth-child(4) {
@@ -496,8 +496,8 @@ main {
 
 .main .timer .time-scale ul li:nth-child(5) {
 	position: absolute;
-	left: 39.97219vh;
-	top: 12.58359vh;
+	left: 41.02113vh;
+	top: 11.81966vh;
 }
 
 .main .timer .inner-circle {
@@ -579,6 +579,10 @@ main {
 	display: block;
 }
 
+.main .timer.break .time-display {
+	left: calc(50% - 100px);
+}
+
 .main .timer.notask .time-display {
 	left: calc(50% - 110px);
 	cursor: pointer;
@@ -601,7 +605,7 @@ main {
 		stroke-dashoffset: 0px;
 	}
 	to {
-		stroke-dashooffset: calc(50vh*3.14);
+		stroke-dashooffset: 153.86vh;
 	}
 }
 
@@ -610,7 +614,7 @@ main {
 		stroke-dashoffset: 0px;
 	}
 	to {
-		stroke-dashooffset: calc(50vh*3.14);
+		stroke-dashooffset: 153.86vh;
 	}
 }
 

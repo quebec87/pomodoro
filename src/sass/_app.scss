@@ -89,20 +89,20 @@ main{
 		.outer-circle-trans{
 			position: absolute;
 			stroke:$light-blue;
-			stroke-width:5px;
+			stroke-width:1vh;
 			fill:none;
 			opacity:0.3;
 		}
 		.outer-circle{
 			stroke:$light-blue;
-			stroke-width:5px;
+			stroke-width:1vh;
 			fill:none;
 		}
 		.outer-circle.start{
 			transform: rotateY(0deg) rotateZ(-90deg);
 			circle{
-			  stroke-dasharray: calc(50vh*3.14);
-			  stroke-dashoffset: calc(50vh*3.14);
+			  stroke-dasharray: 49vh * 3.14;
+			  stroke-dashoffset: 49vh * 3.14;
 			  stroke-linecap: square;
 			  fill:none;
 			  animation: countdown 6s linear 1 forwards;
@@ -110,8 +110,8 @@ main{
 		}
 		.anchor{
 			position: absolute;
-			top:2.5px;
-			left:calc(( 50vh - 10px )*0.5);
+			top: -0.5vh;
+			left:calc(( 50vh - 2vh )*0.5);
 			fill:$light-blue;
 		}
 		.time-scale{
@@ -124,17 +124,17 @@ main{
 				li:nth-child(1){
 					position: absolute;
 					left:calc( (40vh - 20px) * 0.5);
-					top:-20px;
+					top:-3vh;
 				}
 				li:nth-child(2){
 					position: absolute;
-				    left:20vh - cos(28deg)*24vh;
-				    top:20vh - sin(28deg)*20vh;
+				    left:20vh - cos(28deg)*20vh -4.5vh;
+				    top:20vh - sin(28deg)*20vh + 1vh;
 				}
 				li:nth-child(3){
 					position: absolute;
-					left:20vh - sin(36deg)*21vh;
-					top:20vh - cos(36deg)*21vh*-1;
+					left:20vh - sin(36deg)*20vh -2vh;
+					top:20vh - cos(36deg)*20vh*-1;
 
 				}
 				li:nth-child(4){
@@ -144,12 +144,9 @@ main{
 				}	
 				li:nth-child(5){
 					position:absolute;
-					left: 20vh - cos(18deg)*21vh*-1;
-					top: 20vh  - sin(18deg)*24vh;
+					left: 20vh - cos(18deg)*20vh*-1 + 2vh;
+					top: 20vh  - sin(18deg)*20vh - 2vh;
 				}			
-
-
-
 			}
 		}
 		.inner-circle{
@@ -216,6 +213,9 @@ main{
 		.timer-controls{
 			display:block;
 		}
+		.time-display{
+			left:calc(50% - 100px);
+		}
 	}
 	.timer.notask{
 		.time-display{
@@ -241,11 +241,10 @@ main{
 	    stroke-dashoffset: 0px;
 	  }
 	  to {
-	    stroke-dashooffset: calc(50vh*3.14);
+	    stroke-dashooffset: 49vh * 3.14;
 	  }
 	}
 
-
+}
 
 	
-}

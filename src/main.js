@@ -174,7 +174,8 @@ function setClockState() {
                 $(child).text((5 - i) * 5);
             }
             $('.time-scale').css('visibility', 'visible');
-            display.text(`${workingDuration}:00`);
+            setDisplayTime(workingDuration);
+            //display.text(`${workingDuration}:00`);
             break;
         case timerStateArr[2]:
             $('.timer').addClass('break');
@@ -190,14 +191,32 @@ function setClockState() {
                 $(child).text(5 - i);
             }
             $('.time-scale').css('visibility', 'visible');
-            display.text(`${breakDuration}:00`);
+            setDisplayTime(breakDuration);
             break;
         case timerStateArr[3]:
             $('.timer').removeClass('break');
             $('.timer').addClass('done');
+            for (var i = 0; i < 5; i++) {
+                $('.pie' + i).css({
+                    'opacity': 0.1,
+                    'fill': lightblue
+                });
+            }
             display.html('Done!');
             break;
     }
+}
+
+function setDisplayTime(_duration) {
+    var duration = stringLengthAdjust(_duration.toString(), 2);
+    display.text(duration + ':00');
+}
+
+function stringLengthAdjust(str, lenght) {
+    if (str.length >= lenght)
+        return str;
+    else
+        return stringLengthAdjust("0" + str, lenght);
 }
 
 function setupTotalTomato(_count) {
@@ -240,9 +259,21 @@ function resetClicked() {
         $('.outer-circle>circle').css('animation-play-state', 'paused');
         $('.outer-circle').removeClass('start');
         if (timerState == timerStateArr[1]) {
-            display.text(`${workingDuration}:00`);
+            for (var i = 0; i < 5; i++) {
+                $('.pie' + i).css({
+                    'opacity': (i * 0.2) + 0.2,
+                    'fill': orange
+                });
+            }
+            setDisplayTime(workingDuration);
         } else if (timerState == timerStateArr[2]) {
-            display.text(`${breakDuration}:00`);
+            for (var i = 0; i < 5; i++) {
+                $('.pie' + i).css({
+                    'opacity': (i * 0.2) + 0.2,
+                    'fill': lightblue
+                });
+            }
+            setDisplayTime(breakDuration);
         }
     }
 }
