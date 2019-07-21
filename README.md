@@ -9,3 +9,13 @@ basic layout
 add task
 
 clock running-stop-pause-reset-delete
+
+# TODO:
+
+task list - home and panel
+
+analytics panel function
+
+ringtone panel function
+
+
